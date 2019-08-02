@@ -1,0 +1,67 @@
+<tool id="MergeDataFrame_test" name="MergeDataFrame_test" version="0.1.0" python_template_version="3.5">
+    <requirements>
+       <requirement type="package" version="0.24.2">pandas</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        python $__tool_directory__/Concate_data_frame.py '$input1' '$output1' '$class_label'
+    ]]>
+    	
+    </command>
+    
+    <inputs>
+        <conditional name="Add_Class_label">
+            <param name="input_type_selector" type="select" label="Select yer or no">
+               <option value="Yes" selected="True">Yes</option>
+               <option value="No">No</option>
+            </param>
+
+            <when value="Yes">
+            <param type="data" name="input1" format="tsv" multiple="true" />
+                <param name="class_label" type="select" label="meta data" argument="-s">
+                    <option value="1">positive</option>
+                    <option value="0">negative</option>
+                </param>
+            </when>
+
+           <when value="No">
+               <param type="data" name="input1" format="tsv" multiple="true" />
+           </when>	
+        </conditional>
+    </inputs>
+    
+    <outputs>
+        <data name='output1' format='tsv' label="merged.tsv" />    
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="1.tsv,2.tsv,3.tsv"/>
+            <output name="output1" file="merge.tsv" />
+        </test>
+    </tests>
+    <help><![CDATA[
+        usage: ML_algo.py [-h] -f FILE_NAME [-n N_FOLDS] [-w WORK_DIR_PATH] -o
+                  OUT_FILE_NAME
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILE_NAME, --file_name FILE_NAME
+                        Path to target CSV file
+  -n N_FOLDS, --n_folds N_FOLDS
+                        n_folds for Cross Validation
+  -w WORK_DIR_PATH, --Work_dir_path WORK_DIR_PATH
+                        n_folds for Cross Validation
+  -o OUT_FILE_NAME, --out_file_name OUT_FILE_NAME
+                        Path to out file
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubseqtk,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {seqtk},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/lh3/seqtk},
+  
+}</citation>
+    </citations>
+</tool>

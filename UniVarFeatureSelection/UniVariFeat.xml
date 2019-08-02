@@ -1,0 +1,55 @@
+<tool id="UniVarFeature" name="UniVarFeature" version="0.1.0" python_template_version="3.5">
+    <requirements>
+      <requirement type="package" version="2.2">matplotlib</requirement>
+      <requirement type="package" version="1.2.1">scipy</requirement>
+      <requirement type="package" version="2.7">python</requirement>
+      <requirement type="package" version="0.24.2">pandas</requirement>
+      <requirement type="package" version="0.20.0">scikit-learn</requirement>
+
+ 
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        python '$__tool_directory__/SVM_Univariate_feature_seleciton.py' -t '$input1' -o '$output1' -r '$output2' -c '$Cutoff' -d '$output2.extra_files_path' 
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="tsv" />
+        <param name="Cutoff" type="float" value="0" min="0" max="1"/>
+    </inputs>
+    <outputs>
+        <data name='output1' format='tsv' label="out.tsv" />    
+        <data name='output2' format='html' label="repot.html" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="1.csv"/>
+            <output name="output1" file="out.csv" />
+        </test>
+    </tests>
+    <help><![CDATA[
+        usage: SVM_Univariate_feature_seleciton.py [-h] -t TRAIN [-c CUTOFF] [-o OUT]
+                                           [-d OUT_DIR_NAME]
+
+  optional arguments:
+  -h, --help            show this help message and exit
+  -t TRAIN, --train TRAIN
+                        Path to training data as csv file
+  -c CUTOFF, --cutoff CUTOFF
+                        cutoff value for feature selection (between 0 to 1,
+                        default is 0.5)
+  -o OUT, --out OUT     output file name
+  -d OUT_DIR_NAME, --out_dir_name OUT_DIR_NAME
+                        Path to out file
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubseqtk,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {seqtk},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/lh3/seqtk},
+
+}</citation>
+    </citations>
+</tool>

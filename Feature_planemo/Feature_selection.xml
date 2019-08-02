@@ -1,0 +1,52 @@
+<tool id="Feature_selection" name="Feature_selection" version="0.1.0" python_template_version="3.5">
+    <requirements>
+      <requirement type="package" version="2.2">matplotlib</requirement>
+      <requirement type="package" version="1.2.1">scipy</requirement>
+      <requirement type="package" version="2.7">python</requirement>
+      <requirement type="package" version="0.24.2">pandas</requirement>
+      <requirement type="package" version="0.20.0">scikit-learn</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        python '$__tool_directory__/Feature_Selection.py' -I '$input1' -O '$output1' -R '$output2' -D '$output2.extra_files_path' -N '$N_feature'
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="tsv" />
+        <param name="N_feature" type="integer" value="5" min="5" max="200"/>
+    </inputs>
+    <outputs>
+        <data name='output1' format='tsv' label="out.tsv" />    
+        <data name='output2' format='html' label="repot.html" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="1.tsv"/>
+            <output name="output1" file="out_data.tsv" />
+        </test>
+    </tests>
+    <help><![CDATA[
+        usage: ML_algo.py [-h] -f FILE_NAME [-n N_FOLDS] [-w WORK_DIR_PATH] -o
+                  OUT_FILE_NAME
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILE_NAME, --file_name FILE_NAME
+                        Path to target CSV file
+  -n N_FOLDS, --n_folds N_FOLDS
+                        n_folds for Cross Validation
+  -w WORK_DIR_PATH, --Work_dir_path WORK_DIR_PATH
+                        n_folds for Cross Validation
+  -o OUT_FILE_NAME, --out_file_name OUT_FILE_NAME
+                        Path to out file
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubseqtk,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {seqtk},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/lh3/seqtk},
+
+}</citation>
+    </citations>
+</tool>
