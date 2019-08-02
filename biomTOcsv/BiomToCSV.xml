@@ -5,17 +5,17 @@
     </requirements>
 
     <command detect_errors="exit_code"><![CDATA[
-        python '$__tool_directory__/BiomToCsv.py' -I '$input1' -O SampleDataset
+        python '$__tool_directory__/BiomToCsv.py' -I '$input1' -O OutDir
     ]]></command>
 
     <inputs>
         <param type="data" name="input1" format="biom" multiple="true"/>
-        <param name="SampleDataset" type="text" size="25" label="output name" value="SampleDataset"/>
+        <param name="Out put Directory" type="text" size="25" label="output name" value="OutDir"/>
     </inputs>
 
     <outputs>
         <collection type="list" label="tsv_files" name="output1" >
-            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="SampleDataset" format="tsv"/>
+            <discover_datasets pattern="(?P&lt;designation&gt;.*)" directory="OutDir" format="tsv"/>
         </collection>
     </outputs>
 
